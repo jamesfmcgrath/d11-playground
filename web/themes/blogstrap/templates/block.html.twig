@@ -1,0 +1,23 @@
+{#
+/**
+ * @file
+ * Default block template for Blogstrap theme.
+ *
+ * Available variables:
+ * - plugin_id: The ID of the block implementation
+ * - label: The configured label of the block if visible
+ * - configuration: A list of the block's configuration values
+ * - content: The content of this block
+ * - attributes: HTML attributes for the containing element
+ * - title_attributes: HTML attributes for the title element
+ * - content_attributes: HTML attributes for the content element
+ */
+#}
+<div{{ attributes.addClass('block', 'block--' ~ plugin_id|clean_class) }}>
+  {% if label %}
+    <h2{{ title_attributes.addClass('block__title') }}>{{ label }}</h2>
+  {% endif %}
+  <div{{ content_attributes.addClass('block__content') }}>
+    {{ content }}
+  </div>
+</div>

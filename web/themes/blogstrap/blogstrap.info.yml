@@ -1,0 +1,17 @@
+name: 'BlogStrap'
+type: theme
+description: 'A simple blog theme using Bootstrap 5.'
+core_version_requirement: ^10 || ^11
+base theme: false
+package: Custom
+
+regions:
+  header: Header
+  primary_menu: Primary menu
+  content: Content
+  sidebar_left: Sidebar left
+  sidebar_right: Sidebar right
+  footer: Footer
+
+libraries:
+  - blogstrap/global-styling

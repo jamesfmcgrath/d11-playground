@@ -1,0 +1,22 @@
+{
+  "name": "blogstrap",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "sass scss/style.scss css/style.css --style=expanded",
+    "build:min": "sass scss/style.scss css/style.css --style=compressed",
+    "watch": "sass scss/style.scss css/style.css --watch --style=expanded",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "James McGrath <james@mcgrathmedia.com> (http://jamesfmcgrath.org/)",
+  "license": "ISC",
+  "description": "A simple blog theme using Bootstrap 5 for Drupal 11.",
+  "dependencies": {
+    "@popperjs/core": "^2.11.6",
+    "bootstrap": "^5.3.0"
+  },
+  "devDependencies": {
+    "sass": "^1.97.3"
+  }
+}

@@ -1,0 +1,91 @@
+{#
+/**
+ * @file
+ * Default page template for Blogstrap theme.
+ *
+ * Available variables:
+ * - page: The page content
+ * - page.header: Header region
+ * - page.primary_menu: Primary menu region
+ * - page.content: Content region
+ * - page.sidebar_left: Sidebar left region
+ * - page.sidebar_right: Sidebar right region
+ * - page.footer: Footer region
+ */
+#}
+<!DOCTYPE html>
+<html{{ html_attributes }}>
+  <head>
+    <head-placeholder token="{{ placeholder_token|raw }}">
+    <title>{{ head_title|safe_join(' | ') }}</title>
+    <css-placeholder token="{{ placeholder_token|raw }}">
+    <js-placeholder token="{{ placeholder_token|raw }}">
+  </head>
+  <body{{ attributes }}>
+    <a href="#main-content" class="visually-hidden focusable">
+      {{ 'Skip to main content'|t }}
+    </a>
+
+    <div class="col-lg-8 mx-auto p-3 py-md-5">
+      <header role="banner" class="d-flex align-items-center pb-3 mb-5 border-bottom">
+        <a href="{{ path('<front>') }}" class="d-flex align-items-center text-dark text-decoration-none">
+          {% if page.header %}
+            {{ page.header }}
+          {% else %}
+            <span class="fs-4">{{ site_name }}</span>
+          {% endif %}
+        </a>
+        {% if page.primary_menu %}
+          <nav class="ms-auto" role="navigation" aria-label="{{ 'Primary menu'|t }}">
+            {{ page.primary_menu }}
+          </nav>
+        {% endif %}
+      </header>
+
+      {% if page.highlighted %}
+        <div class="mb-4">
+          {{ page.highlighted }}
+        </div>
+      {% endif %}
+
+      {% if page.help %}
+        <div class="mb-4">
+          {{ page.help }}
+        </div>
+      {% endif %}
+
+      <main role="main" id="main-content">
+        {% if page.sidebar_left or page.sidebar_right %}
+          <div class="row g-5">
+            {% if page.sidebar_left %}
+              <aside class="col-md-4" role="complementary" aria-label="{{ 'Sidebar left'|t }}">
+                {{ page.sidebar_left }}
+              </aside>
+            {% endif %}
+
+            <div class="col-md-{% if page.sidebar_left and page.sidebar_right %}4{% elseif page.sidebar_left or page.sidebar_right %}8{% else %}12{% endif %}">
+              {{ page.content }}
+            </div>
+
+            {% if page.sidebar_right %}
+              <aside class="col-md-4" role="complementary" aria-label="{{ 'Sidebar right'|t }}">
+                {{ page.sidebar_right }}
+              </aside>
+            {% endif %}
+          </div>
+        {% else %}
+          {{ page.content }}
+        {% endif %}
+      </main>
+
+      <footer role="contentinfo" class="pt-5 my-5 text-muted border-top">
+        {{ page.footer }}
+        <p class="mb-0">
+          &copy; {{ 'now'|date('Y') }} {{ site_name }}. {{ 'All rights reserved.'|t }}
+        </p>
+      </footer>
+    </div>
+
+    <js-bottom-placeholder token="{{ placeholder_token|raw }}">
+  </body>
+</html>

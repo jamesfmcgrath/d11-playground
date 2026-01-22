@@ -1,0 +1,7 @@
+BlogStrap Changelog
+
+## 1.0.0 - Initial Release
+- Added initial setup with Bootstrap 5 integration.
+- Included regions, templates, and basic styling.
+- Improved accessibility by adding roles to regions.
+- Added README, CHANGELOG, and LICENSE files.

@@ -1,0 +1,21 @@
+bootstrap:
+  version: 5.3.0
+  css:
+    theme:
+      css/bootstrap.min.css: { minified: true }
+  js:
+    js/bootstrap.bundle.min.js: { minified: true, attributes: { defer: true } }
+  dependencies:
+    - core/jquery
+
+global-styling:
+  version: 1.x
+  css:
+    theme:
+      css/style.css: {}
+  js:
+    js/blogstrap.js: {}
+  dependencies:
+    - blogstrap/bootstrap
+    - core/drupal
+    - core/jquery
