@@ -12,8 +12,8 @@ regions:
   footer: Footer
 
 libraries:
-  - blogstrap/global
   - blogstrap/bootstrap
+  - blogstrap/global
 
 components:
   namespaces:
