@@ -1,0 +1,99 @@
+<?php
+
+/**
+ * @file
+ * Functions to support theming in the jfm_blog theme.
+ */
+
+/**
+ * Implements hook_preprocess_HOOK() for HTML document templates.
+ */
+function jfm_blog_preprocess_html(array &$variables): void {
+  // Add body classes based on path or other conditions.
+  $variables['attributes']['class'][] = 'theme-jfm-blog';
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for page templates.
+ */
+function jfm_blog_preprocess_page(array &$variables): void {
+  // Add page-specific variables or classes.
+  // Example: Add a class based on node type.
+  if (isset($variables['node'])) {
+    $node = $variables['node'];
+    $variables['attributes']['class'][] = 'page-node-type-' . $node->bundle();
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for node templates.
+ */
+function jfm_blog_preprocess_node(array &$variables): void {
+  // Add node-specific variables or classes.
+  $node = $variables['node'];
+  $variables['attributes']['class'][] = 'node-' . $node->bundle();
+  
+  if ($node->isPublished()) {
+    $variables['attributes']['class'][] = 'node-published';
+  }
+  else {
+    $variables['attributes']['class'][] = 'node-unpublished';
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for block templates.
+ */
+function jfm_blog_preprocess_block(array &$variables): void {
+  // Add block-specific variables or classes.
+  $block = $variables['elements']['#id'];
+  if ($block) {
+    $variables['attributes']['class'][] = 'block-' . str_replace('_', '-', $block);
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for field templates.
+ */
+function jfm_blog_preprocess_field(array &$variables): void {
+  // Add field-specific variables or classes.
+  $field_name = $variables['field_name'];
+  $variables['attributes']['class'][] = 'field-' . str_replace('_', '-', $field_name);
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for form templates.
+ */
+function jfm_blog_preprocess_form(array &$variables): void {
+  // Add form-specific variables or classes.
+  $form_id = $variables['element']['#form_id'] ?? '';
+  if ($form_id) {
+    $variables['attributes']['class'][] = 'form-' . str_replace('_', '-', $form_id);
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for image widget templates.
+ */
+function jfm_blog_preprocess_image_widget(array &$variables): void {
+  $data = &$variables['data'];
+
+  // This prevents image widget templates from rendering preview container HTML
+  // to users that do not have permission to access these previews.
+  // @todo revisit in https://drupal.org/node/953034
+  // @todo revisit in https://drupal.org/node/3114318
+  if (isset($data['preview']['#access']) && $data['preview']['#access'] === FALSE) {
+    unset($data['preview']);
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for menu templates.
+ */
+function jfm_blog_preprocess_menu(array &$variables): void {
+  // Add menu-specific variables or classes.
+  $menu_name = $variables['menu_name'] ?? '';
+  if ($menu_name) {
+    $variables['attributes']['class'][] = 'menu-' . str_replace('_', '-', $menu_name);
+  }
+}
