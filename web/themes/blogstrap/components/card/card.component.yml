@@ -1,0 +1,32 @@
+name: Card
+description: Bootstrap card component for displaying content
+status: stable
+type: component
+schemas:
+  card:
+    type: object
+    properties:
+      title:
+        type: string
+        title: Card title
+      body:
+        type: string
+        title: Card body content
+      footer:
+        type: string
+        title: Card footer content
+      image:
+        type: string
+        title: Card image URL
+      image_alt:
+        type: string
+        title: Card image alt text
+      link:
+        type: string
+        title: Card link URL
+      link_text:
+        type: string
+        title: Card link text
+      classes:
+        type: string
+        title: Additional CSS classes

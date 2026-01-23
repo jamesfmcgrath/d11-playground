@@ -1,0 +1,17 @@
+name: Footer
+description: Site footer with copyright information
+status: stable
+type: component
+schemas:
+  footer:
+    type: object
+    properties:
+      site_name:
+        type: string
+        title: Site name
+      footer_content:
+        type: string
+        title: Footer content
+      copyright_year:
+        type: string
+        title: Copyright year

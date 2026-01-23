@@ -1,0 +1,14 @@
+name: Menu
+description: Navigation menu component
+status: stable
+type: component
+schemas:
+  menu:
+    type: object
+    properties:
+      menu_content:
+        type: string
+        title: Menu content
+      menu_label:
+        type: string
+        title: Menu label

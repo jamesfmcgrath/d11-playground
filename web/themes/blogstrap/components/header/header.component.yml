@@ -1,0 +1,23 @@
+name: Header
+description: Site header with logo and site name
+status: stable
+type: component
+schemas:
+  header:
+    type: object
+    properties:
+      site_name:
+        type: string
+        title: Site name
+      site_slogan:
+        type: string
+        title: Site slogan
+      header_content:
+        type: string
+        title: Header content
+      menu_content:
+        type: string
+        title: Menu content
+      menu_label:
+        type: string
+        title: Menu label

@@ -1,0 +1,15 @@
+{#
+/**
+ * @file
+ * Menu component template.
+ *
+ * Available variables:
+ * - menu_content: The menu content from the region
+ * - menu_label: The menu label/aria-label
+ */
+#}
+{% if menu_content %}
+  <nav class="ms-auto" role="navigation" aria-label="{{ menu_label|default('Primary menu'|t) }}">
+    {{ menu_content }}
+  </nav>
+{% endif %}

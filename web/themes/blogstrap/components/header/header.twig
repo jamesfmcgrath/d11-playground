@@ -1,0 +1,31 @@
+{#
+/**
+ * @file
+ * Header component template.
+ *
+ * Available variables:
+ * - site_name: The site name
+ * - site_slogan: The site slogan (optional)
+ * - header_content: Content from the header region
+ * - menu_content: Menu content to display (optional)
+ * - menu_label: Menu label for aria-label (optional)
+ */
+#}
+<header role="banner" class="d-flex align-items-center pb-3 mb-5 border-bottom">
+  <a href="{{ path('<front>') }}" class="d-flex align-items-center text-dark text-decoration-none">
+    {% if header_content %}
+      {{ header_content }}
+    {% else %}
+      <span class="fs-4">{{ site_name }}</span>
+    {% endif %}
+  </a>
+  {% if site_slogan %}
+    <span class="ms-3 text-muted">{{ site_slogan }}</span>
+  {% endif %}
+  {% if menu_content %}
+    {% include '@blogstrap/menu/menu.twig' with {
+      'menu_content': menu_content,
+      'menu_label': menu_label|default('Primary menu'|t)
+    } %}
+  {% endif %}
+</header>

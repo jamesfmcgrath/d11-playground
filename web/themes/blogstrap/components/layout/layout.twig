@@ -1,0 +1,71 @@
+{#
+/**
+ * @file
+ * Layout component template.
+ *
+ * Available variables:
+ * - site_name: The site name
+ * - site_slogan: The site slogan (optional)
+ * - header_content: Content from the header region
+ * - menu_content: Menu content to display (optional)
+ * - menu_label: Menu label for aria-label (optional)
+ * - highlighted: Highlighted content
+ * - help: Help content
+ * - sidebar_left: Left sidebar content
+ * - sidebar_right: Right sidebar content
+ * - content: Main content
+ * - footer_content: Footer content
+ * - copyright_year: Copyright year
+ */
+#}
+<div class="col-lg-8 mx-auto p-3 py-md-5">
+  {% include '@blogstrap/header/header.twig' with {
+    'site_name': site_name,
+    'site_slogan': site_slogan|default(''),
+    'header_content': header_content,
+    'menu_content': menu_content,
+    'menu_label': menu_label|default('Primary menu'|t)
+  } %}
+
+  {% if highlighted %}
+    <div class="mb-4">
+      {{ highlighted }}
+    </div>
+  {% endif %}
+
+  {% if help %}
+    <div class="mb-4">
+      {{ help }}
+    </div>
+  {% endif %}
+
+  <main role="main" id="main-content">
+    {% if sidebar_left or sidebar_right %}
+      <div class="row g-5">
+        {% if sidebar_left %}
+          <aside class="col-md-4" role="complementary" aria-label="{{ 'Sidebar left'|t }}">
+            {{ sidebar_left }}
+          </aside>
+        {% endif %}
+
+        <div class="col-md-{% if sidebar_left and sidebar_right %}4{% elseif sidebar_left or sidebar_right %}8{% else %}12{% endif %}">
+          {{ content }}
+        </div>
+
+        {% if sidebar_right %}
+          <aside class="col-md-4" role="complementary" aria-label="{{ 'Sidebar right'|t }}">
+            {{ sidebar_right }}
+          </aside>
+        {% endif %}
+      </div>
+    {% else %}
+      {{ content }}
+    {% endif %}
+  </main>
+
+  {% include '@blogstrap/footer/footer.twig' with {
+    'site_name': site_name,
+    'footer_content': footer_content,
+    'copyright_year': copyright_year
+  } %}
+</div>

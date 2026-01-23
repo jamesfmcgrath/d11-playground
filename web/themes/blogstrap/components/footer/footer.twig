@@ -1,0 +1,21 @@
+{#
+/**
+ * @file
+ * Footer component template.
+ *
+ * Available variables:
+ * - site_name: The site name
+ * - footer_content: Content from the footer region
+ * - copyright_year: The current year
+ */
+#}
+<footer role="contentinfo" class="pt-5 my-5 text-muted border-top">
+  {% if footer_content %}
+    <div class="mb-3">
+      {{ footer_content }}
+    </div>
+  {% endif %}
+  <p class="mb-0">
+    &copy; {{ copyright_year }} {{ site_name }}. {{ 'All rights reserved.'|t }}
+  </p>
+</footer>

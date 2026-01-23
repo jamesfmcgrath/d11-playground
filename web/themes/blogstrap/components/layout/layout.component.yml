@@ -1,0 +1,44 @@
+name: Layout
+description: Main page layout component
+status: stable
+type: component
+schemas:
+  layout:
+    type: object
+    properties:
+      site_name:
+        type: string
+        title: Site name
+      site_slogan:
+        type: string
+        title: Site slogan
+      header_content:
+        type: string
+        title: Header content
+      menu_content:
+        type: string
+        title: Menu content
+      menu_label:
+        type: string
+        title: Menu label
+      highlighted:
+        type: string
+        title: Highlighted content
+      help:
+        type: string
+        title: Help content
+      sidebar_left:
+        type: string
+        title: Left sidebar content
+      sidebar_right:
+        type: string
+        title: Right sidebar content
+      content:
+        type: string
+        title: Main content
+      footer_content:
+        type: string
+        title: Footer content
+      copyright_year:
+        type: string
+        title: Copyright year

@@ -1,0 +1,37 @@
+{#
+/**
+ * @file
+ * Card component template.
+ *
+ * Available variables:
+ * - title: Card title
+ * - body: Card body content
+ * - footer: Card footer content (optional)
+ * - image: Card image URL (optional)
+ * - image_alt: Card image alt text (optional)
+ * - link: Card link URL (optional)
+ * - link_text: Card link text (optional)
+ * - classes: Additional CSS classes
+ */
+#}
+<div class="card {{ classes|default('') }}">
+  {% if image %}
+    <img src="{{ image }}" class="card-img-top" alt="{{ image_alt|default('') }}" />
+  {% endif %}
+  <div class="card-body">
+    {% if title %}
+      <h5 class="card-title">{{ title }}</h5>
+    {% endif %}
+    {% if body %}
+      <p class="card-text">{{ body }}</p>
+    {% endif %}
+    {% if link and link_text %}
+      <a href="{{ link }}" class="btn btn-primary">{{ link_text }}</a>
+    {% endif %}
+  </div>
+  {% if footer %}
+    <div class="card-footer text-muted">
+      {{ footer }}
+    </div>
+  {% endif %}
+</div>
