@@ -1,0 +1,38 @@
+name: Site Header
+status: stable
+description: "Site header component with logo and navigation"
+props:
+  type: object
+  required:
+    - site_name
+  properties:
+    site_name:
+      type: string
+      title: Site Name
+      description: "The name of the site"
+    logo_url:
+      type: string
+      title: Logo URL
+      description: "URL to the site logo image"
+    logo_alt:
+      type: string
+      title: Logo Alt Text
+      description: "Alt text for the logo image"
+    menu_items:
+      type: array
+      title: Menu Items
+      description: "Array of menu items for navigation"
+      items:
+        type: object
+        properties:
+          title:
+            type: string
+          url:
+            type: string
+          active:
+            type: boolean
+            default: false
+libraryOverrides:
+  css:
+    component:
+      site-header.css: {}

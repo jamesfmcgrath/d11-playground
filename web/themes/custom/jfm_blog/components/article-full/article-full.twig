@@ -1,0 +1,56 @@
+{#
+/**
+ * @file
+ * Article full component template.
+ *
+ * Available variables:
+ * - featured_image: Featured image object with url and alt
+ * - title: Article title
+ * - date: Publication date
+ * - author: Article author name
+ * - tags: Array of tag objects
+ * - body: Article body content (HTML)
+ */
+#}
+<article class="article-full">
+  {% if featured_image.url %}
+    <div class="article-full__featured-image">
+      <img src="{{ featured_image.url }}" alt="{{ featured_image.alt|default(title) }}" class="article-full__image">
+    </div>
+  {% endif %}
+
+  <header class="article-full__header">
+    <h1 class="article-full__title">{{ title }}</h1>
+
+    <div class="article-full__meta">
+      {% if date %}
+        <time class="article-full__date" datetime="{{ date|date('Y-m-d') }}">
+          {{ date|date('F j, Y') }}
+        </time>
+      {% endif %}
+
+      {% if author %}
+        <span class="article-full__author">
+          {{ 'By'|t }} <span class="article-full__author-name">{{ author }}</span>
+        </span>
+      {% endif %}
+    </div>
+
+    {% if tags %}
+      <div class="article-full__tags">
+        <span class="article-full__tags-label">{{ 'Tags:'|t }}</span>
+        <ul class="article-full__tags-list">
+          {% for tag in tags %}
+            <li class="article-full__tag-item">
+              <a href="{{ tag.url }}" class="article-full__tag-link">{{ tag.name }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+  </header>
+
+  <div class="article-full__body">
+    {{ body|raw }}
+  </div>
+</article>

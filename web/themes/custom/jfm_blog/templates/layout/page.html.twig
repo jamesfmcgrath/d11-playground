@@ -44,12 +44,13 @@
 #}
 <div class="layout-container">
 
-  <header role="banner">
-    {{ page.header }}
-  </header>
-
-  {{ page.primary_menu }}
-  {{ page.secondary_menu }}
+  {# Site Header Component #}
+  {% include 'jfm_blog:site-header' with {
+    site_name: site_name|default(''),
+    logo_url: logo_url|default(''),
+    logo_alt: logo_alt|default(site_name|default('')),
+    menu_items: primary_menu_items|default([])
+  } %}
 
   {{ page.breadcrumb }}
 
@@ -78,10 +79,9 @@
 
   </main>
 
-  {% if page.footer %}
-    <footer role="contentinfo">
-      {{ page.footer }}
-    </footer>
-  {% endif %}
+  {# Site Footer Component #}
+  {% include 'jfm_blog:site-footer' with {
+    copyright_text: '© ' ~ 'now'|date('Y') ~ ' ' ~ (site_name|default('Site')) ~ '. All rights reserved.'
+  } %}
 
 </div>{# /.layout-container #}

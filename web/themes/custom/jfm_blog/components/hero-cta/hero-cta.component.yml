@@ -1,0 +1,38 @@
+name: Hero CTA
+status: stable
+description: "Hero section component with call-to-action buttons"
+props:
+  type: object
+  required:
+    - heading
+  properties:
+    heading:
+      type: string
+      title: Heading
+      description: "Main heading text"
+    subheading:
+      type: string
+      title: Subheading
+      description: "Subheading text"
+    primary_cta:
+      type: object
+      title: Primary CTA
+      description: "Primary call-to-action button"
+      properties:
+        text:
+          type: string
+        url:
+          type: string
+    secondary_cta:
+      type: object
+      title: Secondary CTA
+      description: "Secondary call-to-action button"
+      properties:
+        text:
+          type: string
+        url:
+          type: string
+libraryOverrides:
+  css:
+    component:
+      hero-cta.css: {}

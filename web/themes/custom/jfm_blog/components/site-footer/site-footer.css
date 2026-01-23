@@ -1,0 +1,23 @@
+/**
+ * @file
+ * Site footer component styles.
+ */
+
+.site-footer {
+  background-color: var(--color-bg-alt, #f5f5f5);
+  border-top: 1px solid var(--color-border, #cccccc);
+  margin-top: var(--spacing-xxl, 3rem);
+  padding: var(--spacing-xl, 2rem) 0;
+}
+
+.site-footer__container {
+  max-width: var(--container-max-width, 1200px);
+  margin: 0 auto;
+  padding: 0 var(--container-padding, 1rem);
+}
+
+.site-footer__copyright {
+  text-align: center;
+  color: var(--color-text-light, #666666);
+  font-size: 0.875rem;
+}

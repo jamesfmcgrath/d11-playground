@@ -1,0 +1,37 @@
+{#
+/**
+ * @file
+ * Hero CTA component template.
+ *
+ * Available variables:
+ * - heading: Main heading text
+ * - subheading: Subheading text
+ * - primary_cta: Primary call-to-action button object
+ * - secondary_cta: Secondary call-to-action button object
+ */
+#}
+<section class="hero-cta">
+  <div class="hero-cta__container">
+    <div class="hero-cta__content">
+      <h1 class="hero-cta__heading">{{ heading }}</h1>
+
+      {% if subheading %}
+        <p class="hero-cta__subheading">{{ subheading }}</p>
+      {% endif %}
+
+      <div class="hero-cta__actions">
+        {% if primary_cta %}
+          <a href="{{ primary_cta.url }}" class="hero-cta__button hero-cta__button--primary">
+            {{ primary_cta.text }}
+          </a>
+        {% endif %}
+
+        {% if secondary_cta %}
+          <a href="{{ secondary_cta.url }}" class="hero-cta__button hero-cta__button--secondary">
+            {{ secondary_cta.text }}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>

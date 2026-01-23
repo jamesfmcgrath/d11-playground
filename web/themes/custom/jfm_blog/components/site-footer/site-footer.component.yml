@@ -1,0 +1,16 @@
+name: Site Footer
+status: stable
+description: "Site footer component with copyright information"
+props:
+  type: object
+  required:
+    - copyright_text
+  properties:
+    copyright_text:
+      type: string
+      title: Copyright Text
+      description: "Copyright text to display in the footer"
+libraryOverrides:
+  css:
+    component:
+      site-footer.css: {}

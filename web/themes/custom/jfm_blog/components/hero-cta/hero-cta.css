@@ -1,0 +1,106 @@
+/**
+ * @file
+ * Hero CTA component styles.
+ */
+
+.hero-cta {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary, #0066cc) 0%,
+    var(--color-link-hover, #004499) 100%
+  );
+  color: var(--color-bg, #ffffff);
+  padding: var(--spacing-xxl, 3rem) 0;
+  text-align: center;
+}
+
+.hero-cta__container {
+  max-width: var(--container-max-width, 1200px);
+  margin: 0 auto;
+  padding: 0 var(--container-padding, 1rem);
+}
+
+.hero-cta__content {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.hero-cta__heading {
+  font-size: 3rem;
+  line-height: 1.2;
+  margin: 0 0 var(--spacing-lg, 1.5rem) 0;
+  font-weight: var(--font-weight-bold, 700);
+  color: var(--color-bg, #ffffff);
+}
+
+.hero-cta__subheading {
+  font-size: 1.25rem;
+  line-height: 1.5;
+  margin: 0 0 var(--spacing-xl, 2rem) 0;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.hero-cta__actions {
+  display: flex;
+  gap: var(--spacing-md, 1rem);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.hero-cta__button {
+  display: inline-block;
+  padding: var(--spacing-md, 1rem) var(--spacing-xl, 2rem);
+  border-radius: var(--border-radius, 4px);
+  text-decoration: none;
+  font-weight: var(--font-weight-bold, 700);
+  transition:
+    transform var(--transition-base, 0.2s ease-in-out),
+    box-shadow var(--transition-base, 0.2s ease-in-out);
+  border: 2px solid transparent;
+}
+
+.hero-cta__button--primary {
+  background-color: var(--color-bg, #ffffff);
+  color: var(--color-primary, #0066cc);
+  border-color: var(--color-bg, #ffffff);
+}
+
+.hero-cta__button--primary:hover,
+.hero-cta__button--primary:focus {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+.hero-cta__button--secondary {
+  background-color: transparent;
+  color: var(--color-bg, #ffffff);
+  border-color: var(--color-bg, #ffffff);
+}
+
+.hero-cta__button--secondary:hover,
+.hero-cta__button--secondary:focus {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hero-cta {
+    padding: var(--spacing-xl, 2rem) 0;
+  }
+
+  .hero-cta__heading {
+    font-size: 2rem;
+  }
+
+  .hero-cta__subheading {
+    font-size: 1.125rem;
+  }
+
+  .hero-cta__button {
+    padding: var(--spacing-sm, 0.5rem) var(--spacing-lg, 1.5rem);
+    font-size: 0.875rem;
+  }
+}

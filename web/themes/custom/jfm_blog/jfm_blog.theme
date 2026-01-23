@@ -23,6 +23,63 @@ function jfm_blog_preprocess_page(array &$variables): void {
     $node = $variables['node'];
     $variables['attributes']['class'][] = 'page-node-type-' . $node->bundle();
   }
+
+  // Prepare data for site-header component.
+  $config = \Drupal::config('system.site');
+  $variables['site_name'] = $config->get('name');
+
+  // Get logo URL if available.
+  $theme_config = \Drupal::config('system.theme.global');
+  $logo_path = $theme_config->get('logo.path');
+  if ($logo_path) {
+    $file_url_generator = \Drupal::service('file_url_generator');
+    $variables['logo_url'] = $file_url_generator->generateAbsoluteString($logo_path);
+  }
+  else {
+    $variables['logo_url'] = NULL;
+  }
+  $variables['logo_alt'] = $variables['site_name'];
+
+  // Prepare primary menu items for site-header component.
+  $menu_items = [];
+  $menu_name = 'main';
+
+  try {
+    $menu_tree = \Drupal::menuTree();
+
+    // Build the typical default set of menu tree parameters.
+    $parameters = $menu_tree->getCurrentRouteMenuTreeParameters($menu_name);
+
+    // Load the tree based on this set of parameters.
+    $tree = $menu_tree->load($menu_name, $parameters);
+
+    // Transform the tree using the manipulators you want.
+    $manipulators = [
+      ['callable' => 'menu.default_tree_manipulators:checkAccess'],
+      ['callable' => 'menu.default_tree_manipulators:generateIndexAndSort'],
+    ];
+    $tree = $menu_tree->transform($tree, $manipulators);
+
+    // Finally, build a renderable array from the transformed tree.
+    $menu = $menu_tree->build($tree);
+
+    if (isset($menu['#items'])) {
+      foreach ($menu['#items'] as $item) {
+        if (isset($item['url'])) {
+          $menu_items[] = [
+            'title' => $item['title'] ?? '',
+            'url' => $item['url']->toString(),
+            'active' => $item['in_active_trail'] ?? FALSE,
+          ];
+        }
+      }
+    }
+  }
+  catch (\Exception $e) {
+    // Menu may not exist, continue without menu items.
+  }
+
+  $variables['primary_menu_items'] = $menu_items;
 }
 
 /**
@@ -32,7 +89,7 @@ function jfm_blog_preprocess_node(array &$variables): void {
   // Add node-specific variables or classes.
   $node = $variables['node'];
   $variables['attributes']['class'][] = 'node-' . $node->bundle();
-  
+
   if ($node->isPublished()) {
     $variables['attributes']['class'][] = 'node-published';
   }

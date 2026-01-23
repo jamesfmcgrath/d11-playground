@@ -1,0 +1,48 @@
+{#
+/**
+ * @file
+ * Article card component template.
+ *
+ * Available variables:
+ * - image: Image object with url and alt
+ * - title: Article title
+ * - url: Link to the full article
+ * - summary: Article summary or excerpt
+ * - date: Publication date
+ */
+#}
+<article class="article-card">
+  {% if image.url %}
+    <div class="article-card__image-wrapper">
+      <a href="{{ url }}" class="article-card__image-link">
+        <img src="{{ image.url }}" alt="{{ image.alt|default(title) }}" class="article-card__image" loading="lazy">
+      </a>
+    </div>
+  {% endif %}
+
+  <div class="article-card__content">
+    {% if date %}
+      <time class="article-card__date" datetime="{{ date|date('Y-m-d') }}">
+        {{ date|date('F j, Y') }}
+      </time>
+    {% endif %}
+
+    <h3 class="article-card__title">
+      <a href="{{ url }}" class="article-card__title-link">
+        {{ title }}
+      </a>
+    </h3>
+
+    {% if summary %}
+      <div class="article-card__summary">
+        {{ summary }}
+      </div>
+    {% endif %}
+
+    <div class="article-card__footer">
+      <a href="{{ url }}" class="article-card__read-more">
+        {{ 'Read more'|t }} <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </div>
+</article>

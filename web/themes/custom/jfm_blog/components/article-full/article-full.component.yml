@@ -1,0 +1,49 @@
+name: Article Full
+status: stable
+description: "Full article display component"
+props:
+  type: object
+  required:
+    - title
+    - body
+  properties:
+    featured_image:
+      type: object
+      title: Featured Image
+      description: "Featured image object with url and alt"
+      properties:
+        url:
+          type: string
+        alt:
+          type: string
+    title:
+      type: string
+      title: Title
+      description: "Article title"
+    date:
+      type: string
+      title: Date
+      description: "Publication date"
+    author:
+      type: string
+      title: Author
+      description: "Article author name"
+    tags:
+      type: array
+      title: Tags
+      description: "Array of tag objects"
+      items:
+        type: object
+        properties:
+          name:
+            type: string
+          url:
+            type: string
+    body:
+      type: string
+      title: Body
+      description: "Article body content (HTML)"
+libraryOverrides:
+  css:
+    component:
+      article-full.css: {}

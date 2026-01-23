@@ -2,9 +2,9 @@ base:
   version: VERSION
   css:
     theme:
-      css/style.css: {}
+      css/global.css: {}
   js:
-    js/script.js: {}
+    js/theme.js: {}
   dependencies:
     - core/drupal
     - core/normalize

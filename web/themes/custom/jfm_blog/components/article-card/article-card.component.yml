@@ -1,0 +1,38 @@
+name: Article Card
+status: stable
+description: "Article card component for displaying article previews"
+props:
+  type: object
+  required:
+    - title
+    - url
+  properties:
+    image:
+      type: object
+      title: Image
+      description: "Article image object with url and alt"
+      properties:
+        url:
+          type: string
+        alt:
+          type: string
+    title:
+      type: string
+      title: Title
+      description: "Article title"
+    url:
+      type: string
+      title: URL
+      description: "Link to the full article"
+    summary:
+      type: string
+      title: Summary
+      description: "Article summary or excerpt"
+    date:
+      type: string
+      title: Date
+      description: "Publication date"
+libraryOverrides:
+  css:
+    component:
+      article-card.css: {}

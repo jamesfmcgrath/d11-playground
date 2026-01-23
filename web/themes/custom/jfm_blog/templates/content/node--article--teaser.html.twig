@@ -1,0 +1,63 @@
+{#
+/**
+ * @file
+ * Theme override to display an article node in teaser view mode.
+ *
+ * Available variables:
+ * - node: The node entity with limited access to object properties and methods.
+ * - label: The title of the node.
+ * - content: All node items. Use {{ content }} to print them all,
+ *   or print a subset such as {{ content.field_example }}.
+ * - url: Direct URL of the current node.
+ * - date: (optional) Themed creation date field.
+ * - attributes: HTML attributes for the containing element.
+ * - title_attributes: Same as attributes, except applied to the main title
+ *   tag that appears in the template.
+ * - content_attributes: Same as attributes, except applied to the main
+ *   content tag that appears in the template.
+ * - view_mode: View mode; for example, "teaser" or "full".
+ *
+ * @see \Drupal\node\Hook\NodeThemeHooks::preprocessNode()
+ */
+#}
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    'node--view-mode-teaser',
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+  ]
+%}
+<article{{ attributes.addClass(classes) }}>
+  {% if content.field_image %}
+    <div class="node__thumbnail">
+      <a href="{{ url }}" rel="bookmark">
+        {{ content.field_image }}
+      </a>
+    </div>
+  {% endif %}
+
+  {{ title_prefix }}
+  {% if label %}
+    <h2{{ title_attributes }}>
+      <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+    </h2>
+  {% endif %}
+  {{ title_suffix }}
+
+  {% if content.field_summary %}
+    <div class="node__summary">
+      {{ content.field_summary }}
+    </div>
+  {% elseif content.body %}
+    <div class="node__summary">
+      {{ content.body }}
+    </div>
+  {% endif %}
+
+  {% if date %}
+    <time class="node__date" datetime="{{ node.getCreatedTime|date('c') }}">{{ date }}</time>
+  {% endif %}
+</article>

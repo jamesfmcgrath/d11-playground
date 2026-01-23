@@ -1,0 +1,44 @@
+{#
+/**
+ * @file
+ * Site header component template.
+ *
+ * Available variables:
+ * - site_name: The name of the site
+ * - logo_url: URL to the site logo image
+ * - logo_alt: Alt text for the logo image
+ * - menu_items: Array of menu items
+ */
+#}
+<header class="site-header" role="banner">
+  <div class="site-header__container">
+    <div class="site-header__branding">
+      {% if logo_url %}
+        <a href="{{ path('<front>') }}" class="site-header__logo-link" rel="home">
+          <img src="{{ logo_url }}" alt="{{ logo_alt|default(site_name) }}" class="site-header__logo">
+        </a>
+      {% endif %}
+      {% if site_name %}
+        <div class="site-header__site-name">
+          <a href="{{ path('<front>') }}" class="site-header__site-name-link" rel="home">
+            {{ site_name }}
+          </a>
+        </div>
+      {% endif %}
+    </div>
+
+    {% if menu_items %}
+      <nav class="site-header__navigation" role="navigation" aria-label="{{ 'Main navigation'|t }}">
+        <ul class="site-header__menu">
+          {% for item in menu_items %}
+            <li class="site-header__menu-item{{ item.active ? ' site-header__menu-item--active' : '' }}">
+              <a href="{{ item.url }}" class="site-header__menu-link{{ item.active ? ' site-header__menu-link--active' : '' }}">
+                {{ item.title }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </nav>
+    {% endif %}
+  </div>
+</header>
