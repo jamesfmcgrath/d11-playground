@@ -1,0 +1,17 @@
+{
+  "extends": "stylelint-config-standard",
+  "rules": {
+    "selector-class-pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*(__|--)?[a-z0-9]*(-[a-z0-9]+)*$",
+    "custom-property-pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+    "comment-empty-line-before": null,
+    "no-descending-specificity": null,
+    "declaration-block-no-redundant-longhand-properties": null,
+    "font-family-no-missing-generic-family-keyword": null,
+    "alpha-value-notation": "number",
+    "color-function-notation": "legacy"
+  },
+  "ignoreFiles": [
+    "**/node_modules/**",
+    "**/vendor/**"
+  ]
+}

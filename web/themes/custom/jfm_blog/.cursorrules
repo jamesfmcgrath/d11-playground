@@ -1,0 +1,442 @@
+# JFM Blog Theme - Drupal 11 SDC Architecture
+
+## Project Overview
+
+Modern, accessible Drupal 11 blog theme using Single Directory Components (SDC). Zero dependencies. Vanilla CSS/JS only. Built as a reference implementation for teaching modern Drupal theming patterns.
+
+## Core Philosophy
+
+- Simple: No build process, no external dependencies
+- Modern: SDC architecture, CSS Grid, semantic HTML5
+- Accessible: WCAG 2.2 AA compliance by default
+- Maintainable: Clear structure, inline documentation
+- Shareable: Every line teaches a pattern
+
+## Project Structure
+
+jfm_blog/
+├── .cursorrules # This file
+├── README.md # User documentation
+├── jfm_blog.info.yml # Theme metadata
+├── jfm_blog.libraries.yml # Asset definitions
+├── jfm_blog.theme # Preprocessing hooks
+├── css/
+│ ├── tokens.css # Design system (colors, spacing, typography)
+│ └── global.css # Base styles, reset, utilities
+├── js/
+│ └── theme.js # Minimal vanilla JavaScript
+├── templates/
+│ ├── html.html.twig # HTML wrapper
+│ ├── page.html.twig # Page layout
+│ ├── node/ # Node templates
+│ └── views/ # Views templates
+├── components/ # Single Directory Components
+│ ├── site-header/
+│ │ ├── site-header.component.yml
+│ │ ├── site-header.twig
+│ │ └── site-header.css
+│ ├── site-footer/
+│ ├── article-card/
+│ ├── article-full/
+│ └── hero-cta/
+└── config/install/ # Exportable configuration
+└── views.view.blog.yml
+
+## Single Directory Components (SDC) Rules
+
+### Component Structure
+
+Every component MUST have these three files:
+
+1. component-name.component.yml - Metadata and prop schema
+2. component-name.twig - Template markup
+3. component-name.css - Component-scoped styles
+
+### Component Schema Format
+
+Use this exact format for component.yml files:
+
+$schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/modules/sdc/src/metadata.schema.json
+name: Component Name
+status: stable
+description: Brief description of component purpose.
+props:
+type: object
+required: - prop_name
+properties:
+prop_name:
+type: string
+title: Prop Title
+libraryOverrides:
+css:
+component:
+component-name.css: {}
+
+### Using Components in Templates
+
+Include components in Twig templates like this:
+{% include 'jfm_blog:component-name' with { prop_name: value } %}
+
+## Design System (css/tokens.css)
+
+### Color Tokens
+
+All colors use HSL format for easy adjustment:
+--color-neutral-50: hsl(0, 0%, 98%);
+--color-neutral-900: hsl(0, 0%, 10%);
+--color-accent-500: hsl(217, 91%, 60%);
+--color-text: var(--color-neutral-900);
+--color-background: var(--color-neutral-50);
+--color-link: var(--color-accent-500);
+
+### Spacing Scale (8px grid)
+
+--space-xs: 0.5rem; (8px)
+--space-sm: 1rem; (16px)
+--space-md: 1.5rem; (24px)
+--space-lg: 2rem; (32px)
+--space-xl: 3rem; (48px)
+--space-2xl: 4rem; (64px)
+
+### Typography
+
+--font-base: system-ui, -apple-system, sans-serif;
+--font-size-base: 1rem;
+--line-height-base: 1.6;
+
+IMPORTANT: All component CSS must reference these tokens, not hard-code values.
+
+## CSS Coding Standards
+
+### Structure and Naming
+
+Use BEM-style naming:
+.component-name { }
+.component-name\_\_element { }
+.component-name--modifier { }
+
+### Required Patterns
+
+- Mobile-first: Base styles for mobile, media queries for larger screens
+- Logical properties: Use padding-inline, margin-block (not left/right, top/bottom)
+- Custom properties: Reference tokens from css/tokens.css
+- No !important: Exception only for prefers-reduced-motion override
+- Scoped styles: Component CSS only affects that component
+
+### Responsive Breakpoints
+
+Tablet and up: @media (min-width: 768px)
+Desktop and up: @media (min-width: 1024px)
+
+## Accessibility Requirements (Non-Negotiable)
+
+### Semantic HTML First
+
+Always use semantic HTML5 elements:
+✅ header, nav, main, article, aside, footer
+❌ div class="header", div class="nav"
+
+### ARIA Landmarks Required
+
+<header role="banner">
+<nav role="navigation" aria-label="Main navigation">
+<main role="main" id="main-content">
+<footer role="contentinfo">
+
+### Focus Management
+
+Always provide visible focus indicators:
+:focus-visible {
+outline: 2px solid var(--color-accent-500);
+outline-offset: 2px;
+}
+
+### Skip Link Required
+
+Every page must have skip to main content link:
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+### Color Contrast Requirements
+
+- Body text: 4.5:1 minimum
+- Large text (18pt+): 3:1 minimum
+- UI components: 3:1 minimum
+
+### Images
+
+- Always require alt text in component schema
+- Use empty alt="" for decorative images only
+
+### Reduced Motion Support
+
+Always include this in component CSS:
+@media (prefers-reduced-motion: reduce) {
+_, _::before, \*::after {
+animation-duration: 0.01ms !important;
+transition-duration: 0.01ms !important;
+}
+}
+
+## Drupal Coding Standards
+
+### File Naming
+
+- Templates: kebab-case.html.twig
+- CSS/JS: kebab-case.css, kebab-case.js
+- PHP: snake_case.theme, snake_case.module
+- Components: kebab-case/kebab-case.component.yml
+
+### Twig Best Practices
+
+Always include file docblock:
+{#
+/\*\*
+
+- @file
+- Brief description of template purpose.
+-
+- Available variables:
+- - variable_name: Description
+    \*/
+    #}
+
+Use semantic HTML and conditional rendering:
+
+<article class="article-card">
+  {% if image %}
+    <div class="article-card__image">
+      {{ image }}
+    </div>
+  {% endif %}
+  <h2>{{ title }}</h2>
+</article>
+
+### PHP Preprocessing
+
+Use proper Drupal hooks with documentation:
+
+/\*\*
+
+- @file
+- Theme functions for JFM Blog.
+  \*/
+
+/\*\*
+
+- Implements hook_preprocess_HOOK().
+  \*/
+  function jfm_blog_preprocess_node(&$variables) {
+  // Add helpful variables
+  $node = $variables['node'];
+  $variables['created_formatted'] = \Drupal::service('date.formatter')
+    ->format($node->getCreatedTime(), 'custom', 'F j, Y');
+  }
+
+## JavaScript Standards
+
+### Vanilla JavaScript Only
+
+Use modern ES6+ features, no jQuery or libraries:
+
+/\*\*
+
+- @file
+- Brief description of functionality.
+  \*/
+
+(function () {
+'use strict';
+
+function functionName() {
+const elements = document.querySelectorAll('.selector');
+elements.forEach(element => {
+element.addEventListener('click', handleClick);
+});
+}
+
+function handleClick(event) {
+// Handle event
+}
+
+// Initialize on DOM ready
+if (document.readyState === 'loading') {
+document.addEventListener('DOMContentLoaded', functionName);
+} else {
+functionName();
+}
+
+})();
+
+### Progressive Enhancement
+
+- Site must work without JavaScript
+- JS enhances, doesn't enable core functionality
+- Forms submit traditionally
+- Navigation works without JS
+
+## Component Development Workflow
+
+### Step-by-Step Process
+
+1. Create component directory with three files
+2. Define schema first in component.yml
+3. Build semantic HTML in .twig template
+4. Style with tokens in .css file
+5. Test with checklist below
+
+### Testing Checklist
+
+- Keyboard navigation works
+- Focus indicators visible
+- Works on mobile viewport
+- Color contrast sufficient
+- Screen reader friendly
+- Works without JavaScript
+
+## Available Components
+
+### site-header
+
+Props: site_name, site_logo, menu_items
+Purpose: Main site header with logo and navigation
+
+### site-footer
+
+Props: copyright
+Purpose: Simple copyright footer
+
+### article-card
+
+Props: image, title, url, summary, date
+Purpose: Blog post teaser for listings
+
+### article-full
+
+Props: featured_image, title, date, author, tags, body
+Purpose: Full blog post display
+
+### hero-cta
+
+Props: heading, subheading, primary_cta, secondary_cta
+Purpose: Optional homepage hero section
+
+## What NOT to Do
+
+### Never Add These
+
+❌ Bootstrap, Tailwind, or any CSS framework
+❌ jQuery or JavaScript libraries
+❌ Build process (Webpack, Gulp, npm scripts)
+❌ Sass/Less preprocessing
+❌ External dependencies of any kind
+
+### Never Do These
+
+❌ Use !important (except reduced-motion)
+❌ Skip accessibility testing
+❌ Hard-code colors/spacing (use tokens)
+❌ Use non-semantic divs when semantic HTML exists
+❌ Forget to document complex logic
+❌ Create components without proper schema
+
+## Documentation Standards
+
+### Inline Comments
+
+Explain WHY, not WHAT:
+/\*
+
+- Using container queries here because card layout
+- needs to adapt to container width, not viewport
+  \*/
+  .component {
+  container-type: inline-size;
+  }
+
+### Component Documentation
+
+Every component.yml should have clear description of purpose and all props.
+
+### README Updates
+
+When adding components, update README.md with usage examples.
+
+## Questions to Ask Before Creating
+
+1. Is this a new component or extend existing?
+   Check if similar component exists, consider reusability
+
+2. What's the semantic HTML?
+   What's the right element (article, section, aside)?
+   Do we need ARIA attributes?
+
+3. Mobile-first approach?
+   Design for mobile, enhance for desktop
+   Test on small viewport first
+
+4. Is it accessible?
+   Can you navigate with keyboard?
+   Is color contrast sufficient?
+   Will screen readers understand it?
+
+5. Does it follow Drupal conventions?
+   Naming matches Drupal patterns?
+   Follows coding standards?
+
+## File Generation Checklist
+
+When creating any file, ensure:
+
+- Proper file header comments
+- Follows naming conventions
+- Uses design tokens (not hard-coded values)
+- Includes accessibility features
+- Mobile-first responsive
+- Inline documentation for complex logic
+- No external dependencies
+- Tested with keyboard navigation
+
+## Key Reminders
+
+1. Simplicity over cleverness - Readable code beats clever code
+2. Semantic HTML first - Style with CSS, not divs with classes
+3. Design tokens everywhere - No magic numbers in component CSS
+4. Accessibility is not optional - WCAG 2.2 AA minimum
+5. Mobile-first always - Design for smallest screen, enhance up
+6. Document the why - Comments explain reasoning, not what code does
+7. Test as you go - Don't build everything then test
+8. Progressive enhancement - Works without JS, enhanced with JS
+
+## Common Patterns
+
+### Creating New Component
+
+Step 1: Create directory components/new-component/
+Step 2: Create new-component.component.yml with schema
+Step 3: Create new-component.twig with semantic HTML
+Step 4: Create new-component.css using design tokens
+Step 5: Test accessibility and responsiveness
+
+### Adding Component to Template
+
+In your template file:
+{% include 'jfm_blog:component-name' with {
+  prop_one: value_one,
+  prop_two: value_two
+} %}
+
+### Styling Component
+
+In component CSS, always use tokens:
+.component-name {
+padding: var(--space-md);
+color: var(--color-text);
+font-size: var(--font-size-base);
+}
+
+## Version Information
+
+Theme version: 1.0.0
+Drupal version: 11.x
+Last updated: 2025-01-23
+Created by: James F. Marks (JFM Digital Works)

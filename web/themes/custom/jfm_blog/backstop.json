@@ -1,0 +1,84 @@
+{
+  "id": "jfm_blog_theme",
+  "viewports": [
+    {
+      "label": "mobile",
+      "width": 375,
+      "height": 667
+    },
+    {
+      "label": "tablet",
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "label": "desktop",
+      "width": 1280,
+      "height": 1024
+    }
+  ],
+  "scenarios": [
+    {
+      "label": "Homepage",
+      "url": "https://d11-playground.ddev.site/",
+      "referenceUrl": "",
+      "readyEvent": "",
+      "readySelector": "",
+      "delay": 1000,
+      "hideSelectors": [],
+      "removeSelectors": [],
+      "hoverSelector": "",
+      "clickSelector": "",
+      "postInteractionWait": 0,
+      "selectors": ["document"],
+      "selectorExpansion": true,
+      "expect": 0,
+      "misMatchThreshold": 0.1,
+      "requireSameDimensions": true
+    },
+    {
+      "label": "Blog Listing",
+      "url": "https://d11-playground.ddev.site/blog",
+      "selectors": ["document"],
+      "delay": 1000,
+      "misMatchThreshold": 0.1
+    },
+    {
+      "label": "Article Full",
+      "url": "https://d11-playground.ddev.site/node/1",
+      "selectors": ["document"],
+      "delay": 1000,
+      "misMatchThreshold": 0.1
+    },
+    {
+      "label": "Article Card Component",
+      "url": "https://d11-playground.ddev.site/blog",
+      "selectors": [".article-card"],
+      "delay": 1000,
+      "misMatchThreshold": 0.1
+    },
+    {
+      "label": "Site Header",
+      "url": "https://d11-playground.ddev.site/",
+      "selectors": [".site-header"],
+      "delay": 500,
+      "misMatchThreshold": 0.1
+    }
+  ],
+  "paths": {
+    "bitmaps_reference": "tests/visual/reference",
+    "bitmaps_test": "tests/visual/test",
+    "engine_scripts": "tests/visual/engine_scripts",
+    "html_report": "tests/visual/html_report",
+    "ci_report": "tests/visual/ci_report"
+  },
+  "report": ["browser", "CI"],
+  "engine": "puppeteer",
+  "engineOptions": {
+    "args": ["--no-sandbox", "--disable-setuid-sandbox"]
+  },
+  "asyncCaptureLimit": 5,
+  "asyncCompareLimit": 50,
+  "debug": false,
+  "debugWindow": false
+}

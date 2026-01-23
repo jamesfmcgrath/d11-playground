@@ -1,0 +1,30 @@
+{
+  "defaults": {
+    "standard": "WCAG2AA",
+    "timeout": 10000,
+    "wait": 1000,
+    "chromeLaunchConfig": {
+      "args": ["--no-sandbox", "--disable-setuid-sandbox"]
+    },
+    "runners": [
+      "axe"
+    ],
+    "ignore": [
+      "region"
+    ]
+  },
+  "urls": [
+    {
+      "url": "https://d11-playground.ddev.site/",
+      "screenCapture": "./reports/pa11y/homepage.png"
+    },
+    {
+      "url": "https://d11-playground.ddev.site/blog",
+      "screenCapture": "./reports/pa11y/blog-listing.png"
+    },
+    {
+      "url": "https://d11-playground.ddev.site/node/1",
+      "screenCapture": "./reports/pa11y/article-page.png"
+    }
+  ]
+}

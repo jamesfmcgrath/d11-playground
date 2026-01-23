@@ -1,0 +1,38 @@
+{
+  "name": "jfm-blog-theme",
+  "version": "1.0.0",
+  "description": "Modern Drupal 11 blog theme with Single Directory Components",
+  "private": true,
+  "scripts": {
+    "test": "npm run test:accessibility && npm run test:html && npm run test:css",
+    "test:accessibility": "pa11y-ci",
+    "test:visual": "backstop test",
+    "test:visual:reference": "backstop reference",
+    "test:visual:approve": "backstop approve",
+    "test:performance": "lighthouse-ci autorun",
+    "test:html": "node scripts/validate-html.js",
+    "test:css": "stylelint '**/*.css' --ignore-path .gitignore",
+    "lint:css": "stylelint '**/*.css' --fix --ignore-path .gitignore"
+  },
+  "devDependencies": {
+    "pa11y-ci": "^3.1.0",
+    "backstopjs": "^6.3.23",
+    "@lhci/cli": "^0.13.0",
+    "stylelint": "^16.1.0",
+    "stylelint-config-standard": "^36.0.0",
+    "html-validator": "^6.0.1"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "keywords": [
+    "drupal",
+    "theme",
+    "accessibility",
+    "sdc",
+    "drupal11"
+  ],
+  "author": "James F. Marks (JFM Digital Works)",
+  "license": "GPL-2.0-or-later"
+}
