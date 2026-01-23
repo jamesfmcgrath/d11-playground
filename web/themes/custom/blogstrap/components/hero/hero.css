@@ -1,0 +1,34 @@
+/**
+ * @file
+ * Hero component styles.
+ */
+
+.hero {
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+}
+
+.hero-background {
+  z-index: 1;
+}
+
+.hero-overlay {
+  z-index: 2;
+}
+
+.hero-content {
+  z-index: 3;
+}
+
+@media (min-width: 768px) {
+  .hero {
+    min-height: 500px;
+  }
+}
+
+@media (min-width: 992px) {
+  .hero {
+    min-height: 600px;
+  }
+}

@@ -1,0 +1,32 @@
+{#
+/**
+ * @file
+ * Hero component template.
+ *
+ * Available variables:
+ * - heading: The main hero heading
+ * - subheading: The hero subheading text
+ * - background_image: Optional background image object with src and alt
+ * - overlay: Whether to add dark overlay
+ */
+#}
+<div class="hero position-relative overflow-hidden text-center">
+  {% if background_image %}
+    <div class="hero-background position-absolute top-0 start-0 w-100 h-100" style="background-image: url('{{ background_image.src }}'); background-size: cover; background-position: center;"></div>
+    {% if overlay %}
+      <div class="hero-overlay position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50"></div>
+    {% endif %}
+  {% endif %}
+  <div class="hero-content position-relative container py-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        {% if heading %}
+          <h1 class="display-4 fw-bold text-white mb-4">{{ heading }}</h1>
+        {% endif %}
+        {% if subheading %}
+          <p class="lead text-white mb-4">{{ subheading }}</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>

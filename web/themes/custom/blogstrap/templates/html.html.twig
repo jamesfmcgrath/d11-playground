@@ -1,0 +1,36 @@
+{#
+/**
+ * @file
+ * Default theme implementation for the basic structure of a single Drupal page.
+ *
+ * Variables:
+ * - html_attributes: HTML attributes for the html element.
+ * - head_title: A modified version of the page title, for use in the TITLE tag.
+ * - head: Markup for the HEAD section (including meta tags, keyword tags, and so on).
+ * - body_attributes: HTML attributes for the BODY element.
+ * - page_top: Initial rendered markup. This should be printed before 'page'.
+ * - page: The rendered page content.
+ * - page_bottom: Closing rendered markup. This should be printed after 'page'.
+ *
+ * @see template_preprocess_html()
+ *
+ * @ingroup themeable
+ */
+#}
+{# templates/html.html.twig #}
+<!DOCTYPE html>
+<html{{ html_attributes }}>
+  <head>
+    <head-placeholder token="{{ placeholder_token|raw }}">
+    <title>{{ head_title|safe_join(' | ') }}</title>
+    <css-placeholder token="{{ placeholder_token|raw }}">
+    <js-placeholder token="{{ placeholder_token|raw }}">
+    {{ head }}
+  </head>
+  <body{{ body_attributes.addClass('d-flex flex-column min-vh-100') }}>
+    {{ page_top }}
+    {{ page }}
+    {{ page_bottom }}
+    <js-bottom-placeholder token="{{ placeholder_token|raw }}">
+  </body>
+</html>

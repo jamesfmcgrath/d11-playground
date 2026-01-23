@@ -1,0 +1,20 @@
+name: Blogstrap
+type: theme
+description: 'A custom Drupal 11 theme with Bootstrap 5 and Single Directory Components'
+core_version_requirement: ^10 || ^11
+base theme: false
+
+regions:
+  header: Header
+  primary_menu: Primary Menu
+  content: Content
+  sidebar_first: Sidebar First
+  footer: Footer
+
+libraries:
+  - blogstrap/global
+  - blogstrap/bootstrap
+
+components:
+  namespaces:
+    blogstrap: components

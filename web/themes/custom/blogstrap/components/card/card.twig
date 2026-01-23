@@ -1,0 +1,28 @@
+{#
+/**
+ * @file
+ * Card component template.
+ *
+ * Available variables:
+ * - title: The card title
+ * - body: The card body content
+ * - image: Optional image object with src and alt
+ * - image_position: Position of image (top or bottom)
+ */
+#}
+<div class="card">
+  {% if image and image_position == 'top' %}
+    <img src="{{ image.src }}" class="card-img-top" alt="{{ image.alt|default('') }}">
+  {% endif %}
+  <div class="card-body">
+    {% if title %}
+      <h5 class="card-title">{{ title }}</h5>
+    {% endif %}
+    {% if body %}
+      <p class="card-text">{{ body }}</p>
+    {% endif %}
+  </div>
+  {% if image and image_position == 'bottom' %}
+    <img src="{{ image.src }}" class="card-img-bottom" alt="{{ image.alt|default('') }}">
+  {% endif %}
+</div>

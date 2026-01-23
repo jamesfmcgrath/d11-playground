@@ -1,0 +1,50 @@
+/**
+ * @file
+ * Main stylesheet for Blogstrap theme.
+ */
+
+// Bootstrap 5 variables override
+// Uncomment and customize as needed:
+// $primary: #0d6efd;
+// $secondary: #6c757d;
+// $success: #198754;
+// $info: #0dcaf0;
+// $warning: #ffc107;
+// $danger: #dc3545;
+// $light: #f8f9fa;
+// $dark: #212529;
+
+// Import Bootstrap 5 SCSS (if using npm package instead of CDN)
+// @import "~bootstrap/scss/bootstrap";
+
+// Theme-specific styles
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+// Header styles
+.region-header {
+  padding: 1rem 0;
+}
+
+// Content area
+.region-content {
+  padding: 2rem 0;
+}
+
+// Sidebar styles
+.region-sidebar-first {
+  padding: 2rem 0;
+}
+
+// Footer styles
+.region-footer {
+  padding: 2rem 0;
+  background-color: #f8f9fa;
+  margin-top: 3rem;
+}
+
+// Utility classes
+.text-shadow {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}

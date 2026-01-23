@@ -1,0 +1,20 @@
+<?php
+
+/**
+ * @file
+ * Theme functions for Blogstrap theme.
+ */
+
+/**
+ * Implements hook_preprocess_html().
+ */
+function blogstrap_preprocess_html(&$variables) {
+  // Add any HTML-level preprocessing here.
+}
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function blogstrap_preprocess_page(&$variables) {
+  // Add any page-level preprocessing here.
+}

@@ -1,0 +1,83 @@
+{#
+/**
+ * @file
+ * Article node template.
+ *
+ * Variables:
+ * - node: The node entity with limited access to object properties and methods.
+ * - label: The title of the node.
+ * - content: All node items. Use {{ content }} to print them all,
+ *   or print a subset such as {{ content.field_example }}.
+ * - url: Direct URL of the current node.
+ * - view_mode: View mode; for example, "teaser" or "full".
+ * - page: Flag for the full page state.
+ * - logged_in: Flag for authenticated user status.
+ * - is_admin: Flag for admin status.
+ *
+ * @see template_preprocess_node()
+ *
+ * @ingroup themeable
+ */
+#}
+{# templates/content/node--article.html.twig #}
+<article{{ attributes.addClass('node', 'node--type-article', 'node--article', view_mode ? 'node--view-mode-' ~ view_mode|clean_class, not node.isPublished() ? 'node--unpublished') }}>
+
+  {% if not page %}
+    <div class="card mb-4">
+      {% if content.field_image|render %}
+        <div class="card-img-top">
+          {{ content.field_image }}
+        </div>
+      {% endif %}
+      <div class="card-body">
+        <h2{{ title_attributes.addClass('node__title', 'card-title', 'h3', 'mb-3') }}>
+          <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+        </h2>
+        {% if content.field_summary|render %}
+          <p class="card-text text-muted">
+            {{ content.field_summary }}
+          </p>
+        {% endif %}
+        <div{{ content_attributes.addClass('node__content', 'card-text') }}>
+          {{ content|without('field_image', 'field_summary', 'links') }}
+        </div>
+        {% if content.links %}
+          <div class="node__links mt-3">
+            {{ content.links }}
+          </div>
+        {% endif %}
+      </div>
+      {% if node.getCreatedTime() %}
+        <div class="card-footer text-muted">
+          <small>{{ 'Published on'|t }} {{ node.getCreatedTime()|date('F j, Y') }}</small>
+        </div>
+      {% endif %}
+    </div>
+  {% else %}
+    <header class="node__header mb-4">
+      <h1{{ title_attributes.addClass('node__title', 'display-4', 'mb-3') }}>{{ label }}</h1>
+      {% if node.getCreatedTime() %}
+        <p class="text-muted">
+          <small>{{ 'Published on'|t }} {{ node.getCreatedTime()|date('F j, Y') }}</small>
+        </p>
+      {% endif %}
+    </header>
+
+    {% if content.field_image|render %}
+      <div class="node__image mb-4">
+        {{ content.field_image }}
+      </div>
+    {% endif %}
+
+    <div{{ content_attributes.addClass('node__content', 'clearfix') }}>
+      {{ content|without('field_image', 'links') }}
+    </div>
+
+    {% if content.links %}
+      <div class="node__links mt-4">
+        {{ content.links }}
+      </div>
+    {% endif %}
+  {% endif %}
+
+</article>

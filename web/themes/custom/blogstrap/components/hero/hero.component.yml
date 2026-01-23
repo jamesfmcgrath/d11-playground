@@ -1,0 +1,33 @@
+$schema: 'https://www.drupal.org/schema/drupal/sdc/1.0/schema.json#'
+name: hero
+description: 'A Bootstrap 5 hero section with heading, subheading, and optional background image'
+props:
+  type: object
+  properties:
+    heading:
+      type: string
+      title: Heading
+      description: 'The main hero heading'
+    subheading:
+      type: string
+      title: Subheading
+      description: 'The hero subheading text'
+    background_image:
+      type: object
+      title: Background Image
+      description: 'Optional background image'
+      properties:
+        src:
+          type: string
+          title: Image Source
+        alt:
+          type: string
+          title: Alt Text
+          default: ''
+    overlay:
+      type: boolean
+      title: Overlay
+      description: 'Add dark overlay for better text readability'
+      default: true
+  required:
+    - heading

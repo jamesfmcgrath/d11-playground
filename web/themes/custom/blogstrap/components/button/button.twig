@@ -1,0 +1,23 @@
+{#
+/**
+ * @file
+ * Button component template.
+ *
+ * Available variables:
+ * - text: The button text
+ * - url: The button link URL
+ * - style: Bootstrap button style variant
+ * - size: Button size (sm, md, lg)
+ */
+#}
+{% set button_style = style|default('primary') %}
+{% set button_size = size|default('md') %}
+{% set button_classes = [
+  'btn',
+  'btn-' ~ button_style,
+  button_size != 'md' ? 'btn-' ~ button_size : '',
+]|join(' ')|trim %}
+
+<a href="{{ url|default('#') }}" class="{{ button_classes }}">
+  {{ text }}
+</a>

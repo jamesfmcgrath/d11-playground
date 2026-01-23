@@ -1,0 +1,23 @@
+{#
+/**
+ * @file
+ * Header region template.
+ *
+ * Variables:
+ * - content: The content for this region, typically blocks.
+ *
+ * @see template_preprocess_region()
+ *
+ * @ingroup themeable
+ */
+#}
+{# templates/layout/region--header.html.twig #}
+{% if content %}
+  <div{{ attributes.addClass('region', 'region-header', 'container', 'py-3') }}>
+    <div class="row align-items-center">
+      <div class="col">
+        {{ content }}
+      </div>
+    </div>
+  </div>
+{% endif %}

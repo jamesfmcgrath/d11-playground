@@ -1,0 +1,53 @@
+{#
+/**
+ * @file
+ * Default node template.
+ *
+ * Variables:
+ * - node: The node entity with limited access to object properties and methods.
+ *   Only method names starting with "get", "has", or "is" and a few common
+ *   methods such as "id", "label", and "bundle" are available. For example:
+ *   - node.getCreatedTime() will return the node creation timestamp.
+ *   - node.isPublished() will return whether the node is published or not.
+ *   - node.label will return the node title.
+ *   Calling other methods (such as node.delete()) will result in an exception.
+ *   See \Drupal\node\Entity\Node class for a full list of public properties
+ *   and methods for the node object.
+ * - label: The title of the node.
+ * - content: All node items. Use {{ content }} to print them all,
+ *   or print a subset such as {{ content.field_example }}. Use
+ *   {{ content|without('field_example') }} to temporarily suppress the printing
+ *   of a given child element.
+ * - url: Direct URL of the current node.
+ * - view_mode: View mode; for example, "teaser" or "full".
+ * - page: Flag for the full page state.
+ * - logged_in: Flag for authenticated user status.
+ * - is_admin: Flag for admin status.
+ *
+ * @see template_preprocess_node()
+ *
+ * @ingroup themeable
+ */
+#}
+{# templates/content/node.html.twig #}
+<article{{ attributes.addClass('node', 'node--type-' ~ node.bundle|clean_class, view_mode ? 'node--view-mode-' ~ view_mode|clean_class, not node.isPublished() ? 'node--unpublished') }}>
+
+  {% if not page %}
+    <h2{{ title_attributes.addClass('node__title', 'h3', 'mb-3') }}>
+      <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+    </h2>
+  {% else %}
+    <h1{{ title_attributes.addClass('node__title', 'mb-4') }}>{{ label }}</h1>
+  {% endif %}
+
+  <div{{ content_attributes.addClass('node__content', 'clearfix') }}>
+    {{ content|without('links') }}
+  </div>
+
+  {% if content.links %}
+    <div class="node__links mt-3">
+      {{ content.links }}
+    </div>
+  {% endif %}
+
+</article>

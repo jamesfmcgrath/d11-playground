@@ -1,0 +1,25 @@
+{#
+/**
+ * @file
+ * Footer region template.
+ *
+ * Variables:
+ * - content: The content for this region, typically blocks.
+ *
+ * @see template_preprocess_region()
+ *
+ * @ingroup themeable
+ */
+#}
+{# templates/layout/region--footer.html.twig #}
+{% if content %}
+  <div{{ attributes.addClass('region', 'region-footer', 'bg-dark', 'text-light', 'py-4', 'mt-5') }}>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          {{ content }}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
