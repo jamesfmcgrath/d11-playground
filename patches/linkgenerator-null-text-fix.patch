@@ -1,0 +1,13 @@
+--- a/core/lib/Drupal/Core/Utility/LinkGenerator.php
++++ b/core/lib/Drupal/Core/Utility/LinkGenerator.php
+@@ -195,7 +195,9 @@ class LinkGenerator implements LinkGeneratorInterface {
+    */
+   protected function doGenerate($generated_link, $attributes, $variables) {
+     if (!($variables['text'] instanceof MarkupInterface)) {
+-      $variables['text'] = Html::escape($variables['text']);
++      // Handle null or empty text values gracefully.
++      $variables['text'] = $variables['text'] ?? '';
++      $variables['text'] = Html::escape($variables['text']);
+     }
+     $attributes = new Attribute($attributes);
+     // This is safe because Attribute does escaping and $variables['text'] is

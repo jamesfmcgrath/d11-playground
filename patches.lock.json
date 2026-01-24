@@ -1,0 +1,17 @@
+{
+    "_hash": "4a022e8c312abc6172d204c88bd49ddaad8b803f4df33b9a86509f58fd99ae6f",
+    "patches": {
+        "drupal/core": [
+            {
+                "package": "drupal/core",
+                "description": "Fix LinkGenerator null text handling",
+                "url": "patches/linkgenerator-null-text-fix.patch",
+                "sha256": "c2a9a2c8ec5f85991c5f97021c051c63ebec82de6c4bfe6e584afd7b7a6a35df",
+                "depth": 2,
+                "extra": {
+                    "provenance": "root"
+                }
+            }
+        ]
+    }
+}

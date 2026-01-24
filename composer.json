@@ -22,6 +22,12 @@
         "drupal/core-recipe-unpack": "^11.3",
         "drupal/core-recommended": "^11.3",
         "drupal/devel": "^5.5",
+        "drupal/metatag": "^2.2",
+        "drupal/pathauto": "^1.14",
+        "drupal/redirect": "^1.12",
+        "drupal/robotstxt": "^1.6",
+        "drupal/token": "^1.17",
+        "drupal/xmlsitemap": "^2.0",
         "drush/drush": "^13.7"
     },
     "conflict": {
@@ -38,7 +44,8 @@
             "phpstan/extension-installer": true,
             "dealerdirect/phpcodesniffer-composer-installer": true,
             "php-http/discovery": true,
-            "php-tuf/composer-integration": true
+            "php-tuf/composer-integration": true,
+            "cweagans/composer-patches": true
         },
         "sort-packages": true
     },
@@ -100,6 +107,14 @@
                 "  * Remove the plugin that prints this message:",
                 "      composer remove drupal/core-project-message"
             ]
+        },
+        "patches": {
+            "drupal/core": {
+                "Fix LinkGenerator null text handling": "patches/linkgenerator-null-text-fix.patch"
+            }
         }
+    },
+    "require-dev": {
+        "cweagans/composer-patches": "^2.0"
     }
 }

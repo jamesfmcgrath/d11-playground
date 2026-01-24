@@ -95,8 +95,8 @@ drush/contrib/
 # Ignore Drupal Console
 web/console/
 
-# Ignore patches directory (if using composer patches)
-patches/
+# Note: patches/ directory should be committed when using composer-patches
+# so patches are available to all developers and in deployment
 
 # Ignore custom development tools
 .docksal/
