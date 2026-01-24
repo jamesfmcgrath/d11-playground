@@ -1,0 +1,120 @@
+/**
+ * @file
+ * Design system tokens for JFM Blog theme.
+ *
+ * All design values are defined here as CSS custom properties.
+ * Components should reference these tokens, not hard-code values.
+ */
+
+:root {
+  /* ============================================
+     Color Tokens (HSL format for easy adjustment)
+     ============================================ */
+  
+  /* Neutral palette - high contrast for accessibility */
+  --color-neutral-50: hsl(0, 0%, 98%);
+  --color-neutral-100: hsl(0, 0%, 95%);
+  --color-neutral-200: hsl(0, 0%, 90%);
+  --color-neutral-300: hsl(0, 0%, 80%);
+  --color-neutral-400: hsl(0, 0%, 65%);
+  --color-neutral-500: hsl(0, 0%, 50%);
+  --color-neutral-600: hsl(0, 0%, 40%);
+  --color-neutral-700: hsl(0, 0%, 30%);
+  --color-neutral-800: hsl(0, 0%, 20%);
+  --color-neutral-900: hsl(0, 0%, 10%);
+
+  /* Accent colors - high contrast for accessibility */
+  --color-accent-400: hsl(217, 85%, 55%);
+  --color-accent-500: hsl(217, 91%, 60%);
+  --color-accent-600: hsl(217, 95%, 65%);
+
+  /* Semantic color tokens */
+  --color-text: var(--color-neutral-900);
+  --color-text-muted: var(--color-neutral-600);
+  --color-background: var(--color-neutral-50);
+  --color-background-alt: var(--color-neutral-100);
+  --color-link: var(--color-accent-500);
+  --color-link-hover: var(--color-accent-600);
+  --color-focus: var(--color-accent-500);
+  --color-border: var(--color-neutral-300);
+
+  /* ============================================
+     Spacing Scale (8px grid system)
+     ============================================ */
+  
+  --space-xs: 0.5rem;    /* 8px */
+  --space-sm: 1rem;      /* 16px */
+  --space-md: 1.5rem;    /* 24px */
+  --space-lg: 2rem;      /* 32px */
+  --space-xl: 3rem;      /* 48px */
+  --space-2xl: 4rem;     /* 64px */
+
+  /* ============================================
+     Typography Tokens
+     ============================================ */
+  
+  /* System font stack for performance and native feel */
+  --font-base: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+  
+  /* Font sizes */
+  --font-size-xs: 0.75rem;    /* 12px */
+  --font-size-sm: 0.875rem;   /* 14px */
+  --font-size-base: 1rem;     /* 16px */
+  --font-size-lg: 1.125rem;   /* 18px */
+  --font-size-xl: 1.25rem;    /* 20px */
+  --font-size-2xl: 1.5rem;    /* 24px */
+  --font-size-3xl: 2rem;      /* 32px */
+  --font-size-4xl: 2.5rem;    /* 40px */
+  
+  /* Line heights */
+  --line-height-tight: 1.25;
+  --line-height-base: 1.6;
+  --line-height-relaxed: 1.75;
+  
+  /* Font weights */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* ============================================
+     Layout Tokens
+     ============================================ */
+  
+  --content-width: 800px;      /* Max width for article content */
+  --page-width: 1200px;        /* Max width for page container */
+  --border-radius-sm: 0.25rem; /* 4px */
+  --border-radius-md: 0.5rem;  /* 8px */
+  --border-radius-lg: 1rem;    /* 16px */
+
+  /* ============================================
+     Effect Tokens
+     ============================================ */
+  
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 350ms ease;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  
+  /* Focus outline */
+  --focus-outline-width: 2px;
+  --focus-outline-offset: 2px;
+}
+
+/* ============================================
+   Reduced Motion Support
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --transition-fast: 0.01ms;
+    --transition-base: 0.01ms;
+    --transition-slow: 0.01ms;
+  }
+}

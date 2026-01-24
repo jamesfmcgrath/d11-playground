@@ -1,0 +1,215 @@
+/**
+ * @file
+ * Global base styles for JFM Blog theme.
+ *
+ * Includes modern CSS reset, typography, accessibility features,
+ * and basic layout utilities.
+ */
+
+/* ============================================
+   Modern CSS Reset
+   ============================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  /* Prevent font size adjustment on iOS */
+  -webkit-text-size-adjust: 100%;
+  /* Smooth scrolling for anchor links */
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-base);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  color: var(--color-text);
+  background-color: var(--color-background);
+  /* Improve text rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Remove default margins from common elements */
+h1, h2, h3, h4, h5, h6,
+p, ul, ol, dl,
+blockquote, pre,
+figure, figcaption {
+  margin: 0;
+}
+
+/* Remove list styles */
+ul, ol {
+  list-style: none;
+}
+
+/* Images and media */
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Form elements */
+input, button, textarea, select {
+  font: inherit;
+  color: inherit;
+}
+
+/* Remove button default styles */
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+/* Links */
+a {
+  color: var(--color-link);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-link-hover);
+}
+
+a:focus-visible {
+  outline: var(--focus-outline-width) solid var(--color-focus);
+  outline-offset: var(--focus-outline-offset);
+  border-radius: var(--border-radius-sm);
+}
+
+/* ============================================
+   Typography
+   ============================================ */
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-tight);
+  color: var(--color-text);
+  margin-block-end: var(--space-md);
+}
+
+h1 {
+  font-size: var(--font-size-4xl);
+}
+
+h2 {
+  font-size: var(--font-size-3xl);
+}
+
+h3 {
+  font-size: var(--font-size-2xl);
+}
+
+h4 {
+  font-size: var(--font-size-xl);
+}
+
+h5 {
+  font-size: var(--font-size-lg);
+}
+
+h6 {
+  font-size: var(--font-size-base);
+}
+
+p {
+  margin-block-end: var(--space-md);
+}
+
+/* ============================================
+   Skip Link (Accessibility)
+   ============================================ */
+
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  z-index: 1000;
+  padding: var(--space-sm) var(--space-md);
+  background-color: var(--color-focus);
+  color: var(--color-background);
+  font-weight: var(--font-weight-semibold);
+  text-decoration: none;
+  border-radius: 0 0 var(--border-radius-md) 0;
+  transition: top var(--transition-fast);
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: var(--focus-outline-width) solid var(--color-background);
+  outline-offset: var(--focus-outline-offset);
+}
+
+/* ============================================
+   Focus Styles (Accessibility)
+   ============================================ */
+
+/* Visible focus for keyboard navigation */
+:focus-visible {
+  outline: var(--focus-outline-width) solid var(--color-focus);
+  outline-offset: var(--focus-outline-offset);
+  border-radius: var(--border-radius-sm);
+}
+
+/* Remove focus outline for mouse users */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ============================================
+   Reduced Motion Support
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============================================
+   Layout Utilities
+   ============================================ */
+
+/* Container for page content */
+.container {
+  width: 100%;
+  max-width: var(--page-width);
+  margin-inline: auto;
+  padding-inline: var(--space-md);
+}
+
+/* Container for article content */
+.content-container {
+  width: 100%;
+  max-width: var(--content-width);
+  margin-inline: auto;
+  padding-inline: var(--space-md);
+}
+
+/* Screen reader only text */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

@@ -1,0 +1,14 @@
+name: JFM Blog
+type: theme
+description: 'Modern, accessible Drupal 11 blog theme built with Single Directory Components'
+core_version_requirement: ^11
+base theme: false
+
+regions:
+  header: Header
+  hero: Hero
+  content: Content
+  footer: Footer
+
+libraries:
+  - jfm_blog/global

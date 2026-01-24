@@ -42,7 +42,11 @@ module.exports = {
         
         // Additional metrics
         'speed-index': ['warn', {maxNumericValue: 3000}],
-        'interactive': ['warn', {maxNumericValue: 3500}]
+        'interactive': ['warn', {maxNumericValue: 3500}],
+        
+        // Performance budgets
+        'resource-summary:stylesheet:size': ['error', {maxNumericValue: 50000}], // CSS < 50KB
+        'resource-summary:script:size': ['error', {maxNumericValue: 20000}] // JS < 20KB
       }
     },
     upload: {
