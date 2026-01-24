@@ -1,0 +1,20 @@
+uuid: 7d7a565e-ef82-4fd9-9019-2ce34179220e
+langcode: en
+status: false
+dependencies:
+  theme:
+    - jfm_blog
+_core:
+  default_config_hash: Q9_2whdOj1YIomfvsIfopROW4FT_X5pY0DjdOiOaQ5U
+id: jfm_blog_primary_admin_actions
+theme: jfm_blog
+region: header
+weight: -5
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  label_display: '0'
+  provider: core
+visibility: {  }

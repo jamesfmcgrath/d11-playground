@@ -1,0 +1,20 @@
+uuid: de048569-f1bd-4b4f-9e59-6b23647951f2
+langcode: en
+status: true
+dependencies:
+  theme:
+    - jfm_blog
+_core:
+  default_config_hash: 6aOgWsNTXjqrDm98TXSAjP6qd2nCijD1xw45MrnbK-Y
+id: jfm_blog_page_title
+theme: jfm_blog
+region: header
+weight: -5
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  label_display: '0'
+  provider: core
+visibility: {  }

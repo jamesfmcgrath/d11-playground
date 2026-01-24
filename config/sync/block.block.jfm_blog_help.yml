@@ -1,0 +1,22 @@
+uuid: fef672ed-c83c-4d64-b62f-6212cca82a6e
+langcode: en
+status: true
+dependencies:
+  module:
+    - help
+  theme:
+    - jfm_blog
+_core:
+  default_config_hash: VfPFqqxfkomud5CO8DUijw85QIl9GIxh_nIxLOYESxg
+id: jfm_blog_help
+theme: jfm_blog
+region: header
+weight: 0
+provider: null
+plugin: help_block
+settings:
+  id: help_block
+  label: Help
+  label_display: '0'
+  provider: help
+visibility: {  }

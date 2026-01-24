@@ -1,0 +1,22 @@
+uuid: 922a1080-56d1-405d-a1c4-4d6510d94acf
+langcode: en
+status: false
+dependencies:
+  module:
+    - system
+  theme:
+    - jfm_blog
+_core:
+  default_config_hash: VhBzWb7lMRtIOg9G7VSw_0uopi-7zXeHq4vXqqV1HFE
+id: jfm_blog_breadcrumbs
+theme: jfm_blog
+region: header
+weight: 0
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  label_display: '0'
+  provider: system
+visibility: {  }

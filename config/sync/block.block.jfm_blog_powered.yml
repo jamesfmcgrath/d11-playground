@@ -1,0 +1,22 @@
+uuid: 1cabf557-27fc-4740-9e20-da882661d781
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - jfm_blog
+_core:
+  default_config_hash: eYL19CLDyinGTWYQfBD1DswWzglEotE_kHnHx3AxTXM
+id: jfm_blog_powered
+theme: jfm_blog
+region: header
+weight: 0
+provider: null
+plugin: system_powered_by_block
+settings:
+  id: system_powered_by_block
+  label: 'Powered by Drupal'
+  label_display: '0'
+  provider: system
+visibility: {  }

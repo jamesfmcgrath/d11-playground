@@ -1,0 +1,22 @@
+uuid: 6cf8442c-37cb-43dd-8679-7184b374a2c4
+langcode: en
+status: false
+dependencies:
+  theme:
+    - jfm_blog
+_core:
+  default_config_hash: ydSxdq7R66I8UMC460rOzlfzvlUL4VRbdwc6z9DWaUI
+id: jfm_blog_secondary_local_tasks
+theme: jfm_blog
+region: header
+weight: -2
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: 'Secondary tabs'
+  label_display: '0'
+  provider: core
+  primary: false
+  secondary: true
+visibility: {  }

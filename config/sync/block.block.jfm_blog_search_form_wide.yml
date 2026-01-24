@@ -1,0 +1,23 @@
+uuid: 38e35c03-6125-4f74-b6d2-506b6e0e4006
+langcode: en
+status: false
+dependencies:
+  module:
+    - search
+  theme:
+    - jfm_blog
+_core:
+  default_config_hash: pbbed0hdqGDF-_QWVVTWRAwgDIotFuAvWH5mWUZu0fA
+id: jfm_blog_search_form_wide
+theme: jfm_blog
+region: header
+weight: -5
+provider: null
+plugin: search_form_block
+settings:
+  id: search_form_block
+  label: 'Search form (wide)'
+  label_display: '0'
+  provider: search
+  page_id: null
+visibility: {  }
