@@ -1,0 +1,34 @@
+{#
+/**
+ * @file
+ * HTML5 wrapper template for all pages.
+ *
+ * This is the outermost template that wraps every page. It provides the
+ * HTML5 doctype, html element with language attributes, and the basic
+ * structure for head and body sections.
+ *
+ * Available variables:
+ * - html_attributes: HTML attributes for the <html> element
+ * - head_title: Page title
+ * - page_top: Rendered content for the top of the page
+ * - page: Rendered page content
+ * - page_bottom: Rendered content for the bottom of the page
+ */
+#}
+<!DOCTYPE html>
+<html{{ html_attributes }}>
+  <head>
+    <head-placeholder token="{{ placeholder_token }}">
+    <title>{{ head_title|safe_join(' | ') }}</title>
+    <css-placeholder token="{{ placeholder_token }}">
+    <js-placeholder token="{{ placeholder_token }}">
+  </head>
+  <body{{ attributes }}>
+    {# Skip link for keyboard navigation - must be first element in body #}
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    {{ page_top }}
+    {{ page }}
+    {{ page_bottom }}
+    <js-bottom-placeholder token="{{ placeholder_token }}">
+  </body>
+</html>

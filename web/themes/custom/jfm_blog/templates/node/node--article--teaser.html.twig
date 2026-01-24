@@ -1,0 +1,50 @@
+{#
+/**
+ * @file
+ * Template for article node teaser display.
+ *
+ * This template is used when displaying article nodes in teaser view mode,
+ * typically in listings, views, or blog index pages. It provides a compact
+ * preview of the article with thumbnail image, linked title, summary, and date.
+ *
+ * TODO: Will be refactored to use article-card component in Phase 4.
+ *
+ * Available variables:
+ * - node: The article node entity
+ * - content: Array of field render arrays
+ * - label: The title of the article
+ * - url: URL to the full article page
+ */
+#}
+<article{{ attributes.addClass('article', 'article--teaser') }}>
+  {# Thumbnail image #}
+  {% if content.field_image %}
+    <div class="article__image">
+      <a href="{{ url }}" class="article__image-link">
+        {{ content.field_image }}
+      </a>
+    </div>
+  {% endif %}
+
+  {# Article content #}
+  <div class="article__content">
+    {# Linked title #}
+    <h2 class="article__title">
+      <a href="{{ url }}" class="article__title-link">{{ label }}</a>
+    </h2>
+
+    {# Summary/body excerpt #}
+    {% if content.body %}
+      <div class="article__summary">
+        {{ content.body }}
+      </div>
+    {% endif %}
+
+    {# Publication date #}
+    {% if node.created.value %}
+      <time datetime="{{ node.created.value|date('c') }}" class="article__date">
+        {{ node.created.value|date('F j, Y') }}
+      </time>
+    {% endif %}
+  </div>
+</article>

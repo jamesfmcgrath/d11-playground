@@ -1,0 +1,42 @@
+{#
+/**
+ * @file
+ * Page layout template.
+ *
+ * This template provides the main page structure with semantic HTML5 regions.
+ * The skip link is already included in html.html.twig, so we don't duplicate it here.
+ *
+ * Available variables:
+ * - page.header: Header region content
+ * - page.hero: Hero region content (optional, typically used on homepage)
+ * - page.content: Main content region
+ * - page.footer: Footer region content
+ */
+#}
+<div class="page">
+  {# Header region #}
+  {% if page.header %}
+    <header role="banner" class="page__header">
+      {{ page.header }}
+    </header>
+  {% endif %}
+
+  {# Hero region (optional, typically homepage only) #}
+  {% if page.hero %}
+    <section class="page__hero">
+      {{ page.hero }}
+    </section>
+  {% endif %}
+
+  {# Main content region #}
+  <main id="main-content" role="main" class="main-content">
+    {{ page.content }}
+  </main>
+
+  {# Footer region #}
+  {% if page.footer %}
+    <footer role="contentinfo" class="page__footer">
+      {{ page.footer }}
+    </footer>
+  {% endif %}
+</div>
