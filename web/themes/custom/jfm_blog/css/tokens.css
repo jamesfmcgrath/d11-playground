@@ -24,9 +24,9 @@
   --color-neutral-900: hsl(0, 0%, 10%);
 
   /* Accent colors - high contrast for accessibility */
-  --color-accent-400: hsl(217, 85%, 55%);
-  --color-accent-500: hsl(217, 91%, 60%);
-  --color-accent-600: hsl(217, 95%, 65%);
+  --color-accent-400: hsl(217, 85%, 40%);
+  --color-accent-500: hsl(217, 91%, 45%);
+  --color-accent-600: hsl(217, 95%, 50%);
 
   /* Semantic color tokens */
   --color-text: var(--color-neutral-900);

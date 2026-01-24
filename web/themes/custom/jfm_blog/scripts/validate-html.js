@@ -9,6 +9,8 @@
 
 const validator = require('html-validator');
 const http = require('http');
+const https = require('https');
+const { URL } = require('url');
 
 // URLs to validate
 const urls = [
@@ -22,7 +24,14 @@ const urls = [
  */
 async function fetchHTML(url) {
   return new Promise((resolve, reject) => {
-    http.get(url, (res) => {
+    const urlObj = new URL(url);
+    const client = urlObj.protocol === 'https:' ? https : http;
+    
+    const options = {
+      rejectUnauthorized: false // Allow self-signed certificates for local development
+    };
+    
+    client.get(url, options, (res) => {
       let data = '';
       res.on('data', chunk => data += chunk);
       res.on('end', () => resolve(data));
@@ -41,9 +50,11 @@ async function validateHTML(html, url) {
       validator: 'WHATWG'
     });
     
-    if (result.includes('Error')) {
+    const resultString = typeof result === 'string' ? result : JSON.stringify(result);
+    
+    if (resultString.includes('Error') || resultString.includes('error')) {
       console.error(`\n❌ Validation errors for ${url}:`);
-      console.error(result);
+      console.error(resultString);
       return false;
     } else {
       console.log(`✅ ${url} - Valid HTML`);
